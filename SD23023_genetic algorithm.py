@@ -21,7 +21,7 @@ MUTATION_RATE = 1.0 / CHROM_LEN  # ~1 bit flip expected per chromosome
 def fitness(individual: np.ndarray) -> float:
     """
     Fitness peaks when the number of 1s equals TARGET_ONES.
-    Max fitness is MAX_FITNESS (=70) at ones == 40.
+    Max fitness is MAX_FITNESS (=80) at ones == 50.
     """
     ones = int(individual.sum())
     return MAX_FITNESS - abs(ones - TARGET_ONES)
@@ -80,12 +80,12 @@ def evolve(pop: np.ndarray, generations: int):
     return best_individual, best_f, best_fitness_per_gen
 
 # ---- Streamlit UI ----
-st.set_page_config(page_title="Bit Pattern GA (70 bits, target ones = 40)", page_icon="🧬", layout="centered")
+st.set_page_config(page_title="Bit Pattern GA (80 bits, target ones = 50)", page_icon="🧬", layout="centered")
 
-st.title("🧬 Genetic Algorithm: Evolve a 70-bit Pattern")
+st.title("🧬 Genetic Algorithm: Evolve a 80-bit Pattern")
 st.caption(
-    "Fixed requirements: Population = 200, Chromosome Length = 70, Generations = 50.\n"
-    "Fitness peaks at ones = 40, with max fitness = 70."
+    "Fixed requirements: Population = 300, Chromosome Length = 80, Generations = 50.\n"
+    "Fitness peaks at ones = 50, with max fitness = 80."
 )
 
 with st.expander("ℹ️ Problem setup (fixed by requirement)", expanded=True):
@@ -139,8 +139,8 @@ if run_btn:
 
     # Validation note
     if best_fit == MAX_FITNESS and ones_count == TARGET_ONES:
-        st.success("Perfect match achieved: ones = 40 and fitness = 70 ✅")
+        st.success("Perfect match achieved: ones = 50 and fitness = 80 ✅")
     else:
         st.info("GA may reach near-optimal solutions; try another seed to explore further.")
 
-st.caption("© 2025 Simple GA demo (70 bits, optimum at 40 ones).")
+
