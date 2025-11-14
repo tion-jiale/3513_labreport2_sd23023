@@ -315,7 +315,6 @@ with right:
             df["fitness"] = fit[:nshow]
             st.dataframe(df, use_container_width=True)
 
-# Store final population on each run for optional display
 if "_final_pop" not in st.session_state:
     st.session_state["_final_pop"] = None
     st.session_state["_final_fit"] = None
@@ -323,3 +322,23 @@ if "_final_pop" not in st.session_state:
 def _store_final(pop, fit):
     st.session_state["_final_pop"] = pop
     st.session_state["_final_fit"] = fit
+
+
+
+def run_ga(
+    problem: GAProblem,
+    pop_size: int,
+    generations: int,
+    crossover_rate: float,
+    mutation_rate: float,
+    tournament_k: int,
+    elitism: int,
+    real_sigma: float,
+    seed: int | None,
+    stream_live: bool = True,
+):
+    ...
+    ...
+    # Final metrics
+    _store_final(pop, fit)   # <-- NOW valid
+    return {...}
