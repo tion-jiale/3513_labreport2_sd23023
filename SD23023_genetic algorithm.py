@@ -215,14 +215,22 @@ def run_ga(
     best_idx = int(np.argmax(fit))
     best = pop[best_idx].copy()
     best_fit = float(fit[best_idx])
-    df = pd.DataFrame({"Best": history_best, "Average": history_avg, "Worst": history_worst})
+
+    df = pd.DataFrame({
+        "Best": history_best,
+        "Average": history_avg,
+        "Worst": history_worst
+    })
+
+    # --- FIX: store population for the sidebar button ---
+    _store_final(pop, fit)
 
     return {
-        "best": best,
-        "best_fitness": best_fit,
-        "history": df,
-        "final_population": pop,
-        "final_fitness": fit,
+    "best": best,
+    "best_fitness": best_fit,
+    "history": df,
+    "final_population": pop,
+    "final_fitness": fit,
     }
 
 
