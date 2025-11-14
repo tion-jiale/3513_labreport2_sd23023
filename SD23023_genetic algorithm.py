@@ -221,19 +221,11 @@ with left:
         st.code(bitstring, language="text")
         st.write(f"Number of ones: {int(np.sum(result['best']))} / {problem.dim}")
 
-# Population Table
-with right:
-    st.subheader("Population Snapshot (Final)")
-    st.caption("Shows first 20 individuals with fitness.")
+# Show final population automatically
+st.subheader("Final Population (Last Generation)")
 
-    if st.button("Show final population table"):
-        pop = st.session_state.get("_final_pop")
-        fit = st.session_state.get("_final_fit")
-
-        if pop is None or fit is None:
-            st.info("Run the GA first.")
-        else:
-            nshow = min(20, pop.shape[0])
-            df = pd.DataFrame(pop[:nshow])
-            df["fitness"] = fit[:nshow]
-            st.dataframe(df, use_container_width=True)
+if st.session_state["_final_pop"] is not None:
+    df = pd.DataFrame(st.session_state["_final_pop"])
+    st.dataframe(df, use_container_width=True)
+else:
+    st.info("Run the algorithm to generate the final population.")
